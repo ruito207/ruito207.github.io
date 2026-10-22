@@ -30,7 +30,7 @@
             </div>
 
             <!-- formのaction属性にFormspreeなどのエンドポイントURLを指定します -->
-            <form action="#" method="POST" class="space-y-6">
+            <form id="contactForm" action="https://formspree.io/f/xoejgryp" method="POST" class="space-y-6">
                 <div>
                     <label for="organization" class="block text-sm font-medium text-gray-700">貴社名・学校名 <span class="text-red-500">*</span></label>
                     <input type="text" id="organization" name="organization" required class="mt-1 w-full border border-gray-300 rounded-md shadow-sm px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
@@ -68,6 +68,43 @@
                     </button>
                 </div>
             </form>
+
+            <div id="successMessage" class="hidden text-center py-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-6">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">送信が完了しました</h2>
+                <p class="text-gray-600 mb-8">お問い合わせありがとうございます。内容を確認次第、担当者よりご連絡いたします。</p>
+                <a href="https://litelligence.net/techinfo" class="text-blue-600 font-medium hover:underline">トップページへ戻る</a>
+            </div>
+
+            <!-- 送信時の切り替え用スクリプト -->
+            <script>
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
+                e.preventDefault(); // 画面の再読み込みをブロック
+                const form = e.target;
+                
+                // Formspree等へデータを送信（バックグラウンド処理）
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        // 送信成功時：フォームを隠して完了メッセージを表示
+                        form.classList.add('hidden');
+                        document.getElementById('successMessage').classList.remove('hidden');
+                    } else {
+                        alert("送信に失敗しました。時間をおいて再度お試しください。");
+                    }
+                } catch (error) {
+                    alert("通信エラーが発生しました。");
+                }
+            });
+            </script>
+            
         </div>
     </main>
 
