@@ -44,14 +44,30 @@
 
 <header class="w-full bg-white shadow-sm border-b border-gray-100 relative z-50">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-start items-center h-16">
-            <!-- ロゴ部分 -->
+        <div class="flex justify-between items-center h-16">
+            <!-- 左側：ロゴ部分 -->
             <a href="https://litelligence.net" class="flex items-baseline no-underline">
                 <span class="font-black text-2xl tracking-tight text-gray-900">
                     Litelligence 
                     <span class="text-blue-600 text-sm font-bold ml-2">情報科教育推進チーム</span>
                 </span>
             </a>
+            
+            <!-- 右側：ナビゲーションメニュー (PC表示時) -->
+            <nav class="hidden md:flex space-x-6 items-center">
+                <a href="#about" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition no-underline">
+                    About me
+                </a>
+                <a href="#programs" class="text-sm font-medium text-gray-600 hover:text-blue-600 transition no-underline">
+                    授業例
+                </a>
+                <a href="#recruit" class="text-sm font-medium text-blue-600 hover:text-blue-800 transition no-underline">
+                    求人
+                </a>
+                <a href="#sponsorship" class="text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-full transition no-underline">
+                    協賛企業の募集
+                </a>
+            </nav>
         </div>
     </div>
 </header>
