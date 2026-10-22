@@ -31,7 +31,7 @@
             </div>
 
             <!-- formのaction属性にFormspreeなどのエンドポイントURLを指定します -->
-            <form action="#" method="POST" class="space-y-6">
+            <form id="contactForm" action="https://formspree.io/f/moejgrrp" method="POST" class="space-y-6">
                 <div class="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     <div>
                         <label for="lastName" class="block text-sm font-medium text-gray-700">姓 <span class="text-red-500">*</span></label>
@@ -87,6 +87,33 @@
                     </button>
                 </div>
             </form>
+
+                        <!-- 送信時の切り替え用スクリプト -->
+            <script>
+            document.getElementById('contactForm').addEventListener('submit', async function(e) {
+                e.preventDefault(); // 画面の再読み込みをブロック
+                const form = e.target;
+                
+                // Formspree等へデータを送信（バックグラウンド処理）
+                try {
+                    const response = await fetch(form.action, {
+                        method: form.method,
+                        body: new FormData(form),
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    if (response.ok) {
+                        // 送信成功時：フォームを隠して完了メッセージを表示
+                        form.classList.add('hidden');
+                        document.getElementById('successMessage').classList.remove('hidden');
+                    } else {
+                        alert("送信に失敗しました。時間をおいて再度お試しください。");
+                    }
+                } catch (error) {
+                    alert("通信エラーが発生しました。");
+                }
+            });
+            </script>
         </div>
     </main>
 
