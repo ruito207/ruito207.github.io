@@ -12,7 +12,7 @@
     <header class="w-full bg-white shadow-sm border-b border-gray-100 relative z-50">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-16">
-                <a href="https://litelligence.net" class="flex items-baseline no-underline">
+                <a href="https://litelligence.net/techinfo" class="flex items-baseline no-underline">
                     <span class="font-black text-2xl tracking-tight text-gray-900">
                         Litelligence <span class="text-blue-600 text-sm font-bold ml-2">情報科教育推進チーム</span>
                     </span>
@@ -83,37 +83,19 @@
 
                 <div class="pt-4">
                     <button type="submit" class="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
-                        エントリーを送信する
+                        送信する
                     </button>
                 </div>
             </form>
 
-                        <!-- 送信時の切り替え用スクリプト -->
-            <script>
-            document.getElementById('contactForm').addEventListener('submit', async function(e) {
-                e.preventDefault(); // 画面の再読み込みをブロック
-                const form = e.target;
-                
-                // Formspree等へデータを送信（バックグラウンド処理）
-                try {
-                    const response = await fetch(form.action, {
-                        method: form.method,
-                        body: new FormData(form),
-                        headers: { 'Accept': 'application/json' }
-                    });
-                    
-                    if (response.ok) {
-                        // 送信成功時：フォームを隠して完了メッセージを表示
-                        form.classList.add('hidden');
-                        document.getElementById('successMessage').classList.remove('hidden');
-                    } else {
-                        alert("送信に失敗しました。時間をおいて再度お試しください。");
-                    }
-                } catch (error) {
-                    alert("通信エラーが発生しました。");
-                }
-            });
-            </script>
+            <div id="successMessage" class="hidden text-center py-12">
+                <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-green-100 text-green-600 mb-6">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                </div>
+                <h2 class="text-2xl font-bold text-gray-900 mb-2">送信が完了しました</h2>
+                <p class="text-gray-600 mb-8">お問い合わせありがとうございます。内容を確認次第、担当者よりご連絡いたします。</p>
+                <a href="https://litelligence.net/techinfo" class="text-blue-600 font-medium hover:underline">トップページへ戻る</a>
+            </div>
         </div>
     </main>
 
